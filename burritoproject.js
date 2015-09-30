@@ -76,7 +76,7 @@ function showUserPosition() {
   map.panTo(user_location);
   map.setZoom(DEFAULT_ZOOM);
 
-  var myIcon = new google.maps.MarkerImage("./location_marker.png", null, null, null, new google.maps.Size(17,17));
+  var myIcon = new google.maps.MarkerImage("./images/location_marker.png", null, null, null, new google.maps.Size(17,17));
   var marker = new google.maps.Marker({
     position: user_location,
     map: map,
@@ -169,7 +169,7 @@ function fadeGif() {
 
 function createMarker(place) {
   var placeLoc = place.geometry.location;
-  var myIcon = new google.maps.MarkerImage("./burrito_marker2.png", null, null, null, new google.maps.Size(70, 70));
+  var myIcon = new google.maps.MarkerImage("./images/burrito_marker2.png", null, null, null, new google.maps.Size(70, 70));
   var marker = new google.maps.Marker({
     map: map,
     position: place.geometry.location,
