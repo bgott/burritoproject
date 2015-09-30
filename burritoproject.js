@@ -178,8 +178,6 @@ function createMarker(place) {
     zIndex: 2,
   });
 
-  // service = new google.maps.places.PlacesService(map);
-  // service.getDetails(place, callback);
 
   google.maps.event.addListener(marker, 'click', function() {
     createMarkerInfobox(marker, place);
@@ -234,7 +232,6 @@ $(document).on('click', '.place-button', function() {
   if (previous) {
     previous.removeClass('active');
     previous.children('.address').hide();
-    //$(this).children('.price').removeClass('price-active');
     $('#right-panel').hide();
     directionsDisplay.setMap(null);
   }
@@ -245,7 +242,6 @@ $(document).on('click', '.place-button', function() {
   if (address !== prev_addr) {
     $(this).addClass('active');
     $(this).children('.address').show();
-    //$(this).children('.price').addClass('price-active');
 
     var name = $(this).children('h4').text();
     var marker = $('#map').data(name);
