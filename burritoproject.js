@@ -13,8 +13,8 @@ $('#map').load(function() {
   $('.burrito-div').fadeOut('slow');
 });
 
-/** fetch the user's location from the browser, display appropriate error 
- *    if the location is unavailable
+/** Fetch the user's location from the browser, display appropriate error 
+ *  if the location is unavailable.
  */
 function getUserLocation() {
   if (navigator.geolocation) {
@@ -34,17 +34,15 @@ function setLocation(position) {
 }
 
 
-/** makes use of googlemaps api's call to nearbySearch
- *  which allows to sort by distance from the user's location.
- *  there seem to be a few discrepancies between the call's
- *  results, and the distance estimates of the google maps
+/** Makes use of googlemaps api's call to nearbySearch which allows to sort by 
+ *  distance from the user's location. There seem to be a few discrepancies 
+ *  between the call's results, and the distance estimates of the google maps
  *  directions class, but it's pretty damn accurate.
  */
 function burritoSearch() {
   service = new google.maps.places.PlacesService(map);
   service.nearbySearch({
     location: user_location,
-//    radius: DEFAULT_RADIUS,
     keyword: 'burrito',
     types: ['restaurants'],
     rankBy: google.maps.places.RankBy.DISTANCE,
@@ -54,29 +52,28 @@ function burritoSearch() {
 function userLocationError(error) {
   switch(error.code) {
     case error.PERMISSION_DENIED:
-        window.alert("User denied the request for Geolocation.");
+        window.alert('User denied the request for Geolocation.');
         break;
     case error.POSITION_UNAVAILABLE:
-        window.alert("Location information is unavailable.");
+        window.alert('Location information is unavailable.');
         break;
     case error.TIMEOUT:
-        window.alert("The request to get user location timed out.");
+        window.alert('The request to get user location timed out.');
         break;
     case error.UNKNOWN_ERROR:
-        window.alert("An unknown error occurred.");
+        window.alert('An unknown error occurred.');
         break;
     }
 }
 
 
-/** display the user's position icon
- *    and display the user's infowindow
+/** Displays the user's position icon and display the user's infowindow
  */
 function showUserPosition() {
   map.panTo(user_location);
   map.setZoom(DEFAULT_ZOOM);
 
-  var myIcon = new google.maps.MarkerImage("./images/location_marker.png", null, null, null, new google.maps.Size(17,17));
+  var myIcon = new google.maps.MarkerImage('./images/location_marker.png', null, null, null, new google.maps.Size(17,17));
   var marker = new google.maps.Marker({
     position: user_location,
     map: map,
@@ -92,8 +89,8 @@ function showUserPosition() {
   });
 }
 
-/** after the route is calculated and displayed on the map, we move
- *    the route directions <div> underneath the matching place button
+/** After the route is calculated and displayed on the map, we move
+ *  the route directions <div> underneath the matching place button
  */
 function calculateAndDisplayRoute(directionsService, directionsDisplay, destination) {
   var start = user_location;
@@ -116,13 +113,10 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay, destinat
   });
 }
 
-/** by covering part of the map with the 
- *  panel of burrito places, as well as the
- *  banner, we've covered part of the map
- *  that the google API thinks is in use.
- *  this function adjusts the map to display
- *  the directions within the usable section
- *  of the map
+/** By covering part of the map with the panel of burrito places, as well as 
+ *  the banner, we've covered part of the map that the google API thinks is 
+ *  in use. This function adjusts the map to display the directions within 
+ *  the usable (lower right) section of the map.
  */
 function adjustMap() {
   map.setZoom(map.getZoom() - 1);
@@ -169,7 +163,7 @@ function fadeGif() {
 
 function createMarker(place) {
   var placeLoc = place.geometry.location;
-  var myIcon = new google.maps.MarkerImage("./images/burrito_marker2.png", null, null, null, new google.maps.Size(70, 70));
+  var myIcon = new google.maps.MarkerImage('./images/burrito_marker2.png', null, null, null, new google.maps.Size(70, 70));
   var marker = new google.maps.Marker({
     map: map,
     position: place.geometry.location,
@@ -181,7 +175,7 @@ function createMarker(place) {
 
   google.maps.event.addListener(marker, 'click', function() {
     createMarkerInfobox(marker, place);
-    var previous = $(".list-group").children(".active");
+    var previous = $('.list-group').children('.active');
     previous.removeClass('active'); 
     $("button:contains('" + place.vicinity + "')").addClass('active');
     calculateAndDisplayRoute(directionsService, directionsDisplay, place);
@@ -203,8 +197,8 @@ function createMarkerInfobox(marker, place) {
 }
 
 
-/** create the list-group-item button and descendants for each place
- *    and append it to the list-group in the panel
+/** Create the list-group-item button and descendants for each place and append 
+ *  it to the list-group in the panel.
  */
 function addPlaceToList(place) {
 
@@ -228,7 +222,7 @@ function addPlaceToList(place) {
 
 $(document).on('click', '.place-button', function() {
   var previous = $('.active');
-  // remove all appropriate styling from the previously selected place
+  // removes all appropriate styling from the previously selected place
   if (previous) {
     previous.removeClass('active');
     previous.children('.address').hide();
@@ -258,11 +252,8 @@ $(document).on('click', '.place-button', function() {
 
 });
 
-/** scrolls along the list of 
- *  places, to the active burrito shop.
- *  we set a timeout to reduce lag
- *  between the auto zoom after directions
- *  are displayed.
+/** Scrolls along the list of places, to the active burrito shop. we set a 
+ *  timeout to reduce lag between the auto zoom after directions are displayed.
  */
 function scrollToPlaceList() {
   var groupdiv = $('.list-group');
