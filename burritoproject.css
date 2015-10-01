@@ -25,6 +25,7 @@ html, body {
 	margin-top: 17px;
 }
 
+<<<<<<< HEAD
 .name-tag {
 	color: #ffffff;
 	font-family: 'Indie Flower', cursive;
@@ -34,6 +35,8 @@ html, body {
 	float: right;
 }
 
+=======
+>>>>>>> gh-pages
 .burrito-div {
 	position: fixed;
 	z-index: 3;
