@@ -1,4 +1,4 @@
-# burritoproject
+# The Burrito Project
 
 The application renders a map (using Google Maps API) that uses the browser's location to plot all the closest burrito-serving shops nearby. The locations are listed by order of proximity to the user (based on Google Maps distance ranking). 
 
