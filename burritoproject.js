@@ -157,7 +157,7 @@ function searchcallback(results, status) {
       addPlaceToList(results[i]);
     }
   }
-  fadeGif();
+  //fadeGif();
 }
 
 function fadeGif() {
